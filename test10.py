@@ -1,12 +1,40 @@
 import csv
 import time
+import random
 
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+passwordCol = 10
+emailCol = 9
+
+with open('us-500.csv') as csvDataFile:
+    data = list(csv.reader(csvDataFile))
+n = random.randint(1, 500)
+
+print(n)
+randomEmail = data[n][emailCol]
+randomPassword = data[n][passwordCol]
 
 browser = webdriver.Chrome()
-browser.get('https://latest.oscarcommerce.com/en-gb/catalogue/')
+browser.get('https://latest.oscarcommerce.com/en-gb/accounts/')
 
-browser.implicitly_wait(5)
+try:
+    wait = WebDriverWait(browser, 10)
+    wait.until(EC.visibility_of_element_located(
+        (By.ID, "login_link")))
+    browser.get('https://latest.oscarcommerce.com/en-gb/accounts/login/')
+    # r day eo hieu sao k click dc cai nut' kia
+    browser.find_element_by_id(
+        "id_login-username").send_keys(randomEmail)
+    browser.find_element_by_id(
+        "id_login-password").send_keys(randomPassword)
+    browser.find_element_by_xpath(
+        "//button[contains(text(), 'Log In')]").click()
+except Exception as e:
+    print(str(e))
 
 # dky tk moi
 browser.find_element_by_xpath('//*[@title="Hacking Exposed Wireless"]').click()
