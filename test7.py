@@ -42,16 +42,16 @@ browser.get('https://latest.oscarcommerce.com/en-gb/accounts/login/')
 
 
 # dang nhap
-# browser.find_element_by_id(
-#     "id_login-username").send_keys(randomEmail)
-# browser.find_element_by_id(
-#     "id_login-password").send_keys(randomPassword)
-# browser.implicitly_wait(5)
 browser.find_element_by_id(
-    "id_login-username").send_keys("dattq12@gmail.com")
+    "id_login-username").send_keys(randomEmail)
 browser.find_element_by_id(
-    "id_login-password").send_keys("5654577qa")
+    "id_login-password").send_keys(randomPassword)
 browser.implicitly_wait(5)
+# browser.find_element_by_id(
+#     "id_login-username").send_keys("dattq12@gmail.com")
+# browser.find_element_by_id(
+#     "id_login-password").send_keys("5654577qa")
+# browser.implicitly_wait(5)
 browser.find_element_by_name("login_submit").click()
 browser.implicitly_wait(5)
 
